@@ -100,7 +100,7 @@ jobs:
       # ----------------------------------------------------------
       # 11. Rename the generated APK
       # ----------------------------------------------------------
-      - name: ionic-photogallery.apk
+      - name: IonicPhotoGallery.apk
         run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk IonicPhotoGallery.apk
 
