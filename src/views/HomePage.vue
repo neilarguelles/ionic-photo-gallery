@@ -1,56 +1,70 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true">
+    <ion-header class="app-header" :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title>Camera</ion-title>
+        <ion-button slot="end" fill="clear" class="header-action" aria-label="Open gallery">
+          <ion-icon :icon="imagesIcon" />
+        </ion-button>
       </ion-toolbar>
     </ion-header>
-
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+    <ion-content :fullscreen="true" class="camera-page">
+      <CameraComponent @photo-captured="addPhoto" />
+      <PhotoGallery :photos="photos" />
     </ion-content>
   </ion-page>
 </template>
-
 <script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButton,
+  IonIcon,
+} from "@ionic/vue";
+import { ref } from "vue";
+import { images as imagesIcon } from "ionicons/icons";
+import CameraComponent from "@/components/CameraComponent.vue";
+import PhotoGallery from "@/components/PhotoGallery.vue";
+const photos = ref<string[]>([]);
+const addPhoto = (photo: string) => {
+  photos.value.unshift(photo);
+};
 </script>
 
 <style scoped>
-#container {
-  text-align: center;
-  
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+:global(body) {
+  background: #050505;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.camera-page {
+  --background: #050505;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  
-  color: #8c8c8c;
-  
-  margin: 0;
+.app-header {
+  background: #050505;
 }
 
-#container a {
-  text-decoration: none;
+.app-header ion-toolbar {
+  --background: rgba(5, 5, 5, 0.92);
+  --color: #f5f5f7;
+  --border-color: transparent;
+  padding: 8px 14px 6px;
+  backdrop-filter: blur(18px);
+}
+
+.app-header ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.header-action {
+  --color: #f5f5f7;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  font-size: 22px;
 }
 </style>

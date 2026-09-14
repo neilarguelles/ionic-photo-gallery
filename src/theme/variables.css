@@ -1,2 +1,14 @@
 /* For information on how to create your own theme, please refer to:
 http://ionicframework.com/docs/theming/ */
+
+pwa-camera-modal {
+	--header-height: 4.25em;
+	--footer-height: 8.75em;
+	--header-height-landscape: 3.5em;
+	--footer-height-landscape: 6.5em;
+	--shutter-size: 5.25em;
+	--icon-size-header: 1.55em;
+	--icon-size-footer: 2.4em;
+	--margin-size-header: 1.35em;
+	--margin-size-footer: 1.6em;
+}
